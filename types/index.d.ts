@@ -64,6 +64,11 @@ interface CordovaPluginBackgroundMode {
    */
   isScreenOff(callback: (enabled: boolean) => void): void;
   /**
+   * Android specifics: Disables battery optimazation mode for the app.
+   * Requires permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS to function.
+   */
+  disableBatteryOptimizations(): void;
+  /**
    * Turn screen on.
    */
   wakeUp(): void;
