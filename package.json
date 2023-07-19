@@ -34,6 +34,7 @@
   ],
   "author": "Sebastián Katzer",
   "license": "Apache 2.0",
+  "types": "index.d.ts",
   "bugs": {
     "url": "https://github.com/andeodev/cordova-plugin-background-mode/issues"
   },
