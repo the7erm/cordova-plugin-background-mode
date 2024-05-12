@@ -1,6 +1,6 @@
 {
   "name": "@the7erm/cordova-plugin-background-mode-the7erm",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Prevent apps from going to sleep in background.",
   "cordova": {
     "id": "@the7erm/cordova-plugin-background-mode-the7erm",

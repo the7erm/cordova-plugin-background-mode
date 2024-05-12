@@ -84,40 +84,45 @@ public class BackgroundModeExt extends CordovaPlugin {
                             CallbackContext callback)
     {
         boolean validAction = true;
-
-        switch (action)
-        {
-            case "battery":
-                disableBatteryOptimizations();
-                break;
-            case "webview":
-                disableWebViewOptimizations();
-                break;
-            case "appstart":
-                openAppStart(args.opt(0));
-                break;
-            case "background":
-                moveToBackground();
-                break;
-            case "foreground":
-                moveToForeground();
-                break;
-            case "tasklist":
-                excludeFromTaskList();
-                break;
-            case "dimmed":
-                isDimmed(callback);
-                break;
-            case "wakeup":
-                wakeup();
-                break;
-            case "unlock":
-                wakeup();
-                unlock();
-                break;
-            default:
-                validAction = false;
+        try {
+            switch (action) {
+                case "battery":
+                    disableBatteryOptimizations();
+                    break;
+                case "webview":
+                    disableWebViewOptimizations();
+                    break;
+                case "appstart":
+                    openAppStart(args.opt(0));
+                    break;
+                case "background":
+                    moveToBackground();
+                    break;
+                case "foreground":
+                    moveToForeground();
+                    break;
+                case "tasklist":
+                    excludeFromTaskList();
+                    break;
+                case "dimmed":
+                    isDimmed(callback);
+                    break;
+                case "wakeup":
+                    wakeup();
+                    break;
+                case "unlock":
+                    wakeup();
+                    unlock();
+                    break;
+                default:
+                    validAction = false;
+            }
+        } catch (Exception e) {
+            //catches exception and all subclasses
+            callback.error("Error executing: " + e);
+            return false;
         }
+
 
         if (validAction) {
             callback.success();
