@@ -1,6 +1,6 @@
 
 <p align="left">
-    <b><a href="https://github.com/katzer/cordova-plugin-background-mode/tree/example">SAMPLE APP</a> :point_right:</b>
+    <b><a href="https://github.com/the7erm/cordova-plugin-background-mode-the7erm/tree/example">SAMPLE APP</a> :point_right:</b>
 </p>
 
 Plugin for the [Cordova][cordova] framework to perform infinite background execution.
@@ -22,20 +22,15 @@ Use the plugin by your own risk!
 
 
 ## Installation
-The plugin can be installed via [Cordova-CLI][CLI] and is publicly available on [NPM][npm].
+The plugin can be installed via [Cordova-CLI][CLI].
 
-Execute from the projects root folder:
+install the latest head version:
 
-    $ cordova plugin add cordova-plugin-background-mode
-
-Or install the latest head version:
-
-    $ cordova plugin add https://github.com/andeodev/cordova-plugin-background-mode.git
+    $ cordova plugin add https://github.com/the7erm/cordova-plugin-background-mode-the7erm.git
 
 Or install from local source:
 
-    $ cordova plugin add cordova-plugin-background-mode --searchpath <path>
-
+    $ cordova plugin add cordova-plugin-background-mode-the7erm --searchpath <path>
 
 ## Usage
 The plugin creates the object `cordova.plugins.backgroundMode` and is accessible after the *deviceready* event has been fired.
@@ -134,6 +129,8 @@ To indicate that the app is executing tasks in background and being paused would
 #### Override defaults
 The title, text and icon for that notification can be customized as below. Also, by default the app will come to foreground when tapping on the notification. That can be changed by setting resume to false. On Android 5.0+, the color option will set the background color of the notification circle. Also on Android 5.0+, setting hidden to false will make the notification visible on lockscreen.
 
+Note: Doesn't appear to work in latest version of andriod.
+
 ```js
 cordova.plugins.backgroundMode.setDefaults({
     title: String,
@@ -167,7 +164,7 @@ Various APIs like playing media or tracking GPS position in background might not
 
 ```js
 cordova.plugins.backgroundMode.on('activate', function() {
-   cordova.plugins.backgroundMode.disableWebViewOptimizations(); 
+   cordova.plugins.backgroundMode.disableWebViewOptimizations();
 });
 ```
 
