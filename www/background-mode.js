@@ -31,8 +31,9 @@ var exec    = require('cordova/exec'),
  */
 exports.enable = function()
 {
-    if (this.isEnabled())
+    if (this.isEnabled()) {
         return;
+    }
 
     var fn = function() {
         exports._isEnabled = true;
@@ -50,8 +51,9 @@ exports.enable = function()
  */
 exports.disable = function()
 {
-    if (!this.isEnabled())
+    if (!this.isEnabled()) {
         return;
+    }
 
     var fn = function() {
         exports._isEnabled = false;
@@ -82,8 +84,7 @@ exports.setEnabled = function (enable)
  *
  * @return [ Object ]
  */
-exports.getDefaults = function()
-{
+exports.getDefaults = function() {
     return this._defaults;
 };
 
@@ -92,8 +93,7 @@ exports.getDefaults = function()
  *
  * @return [ Object ]
  */
-exports.getSettings = function()
-{
+exports.getSettings = function() {
     return this._settings || {};
 };
 
@@ -104,20 +104,16 @@ exports.getSettings = function()
  *
  * @return [ Void ]
  */
-exports.setDefaults = function (overrides)
-{
+exports.setDefaults = function (overrides) {
     var defaults = this.getDefaults();
 
-    for (var key in defaults)
-    {
-        if (overrides.hasOwnProperty(key))
-        {
+    for (var key in defaults) {
+        if (overrides.hasOwnProperty(key)) {
             defaults[key] = overrides[key];
         }
     }
 
-    if (this._isAndroid)
-    {
+    if (this._isAndroid) {
         cordova.exec(null, null, 'BackgroundMode', 'configure', [defaults, false]);
     }
 };

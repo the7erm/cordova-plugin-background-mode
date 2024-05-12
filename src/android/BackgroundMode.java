@@ -92,20 +92,24 @@ public class BackgroundMode extends CordovaPlugin {
                             CallbackContext callback)
     {
         boolean validAction = true;
-
-        switch (action)
-        {
-            case "configure":
-                configure(args.optJSONObject(0), args.optBoolean(1));
-                break;
-            case "enable":
-                enableMode();
-                break;
-            case "disable":
-                disableMode();
-                break;
-            default:
-                validAction = false;
+        try {
+            switch (action)
+            {
+                case "configure":
+                    configure(args.optJSONObject(0), args.optBoolean(1));
+                    break;
+                case "enable":
+                    enableMode();
+                    break;
+                case "disable":
+                    disableMode();
+                    break;
+                default:
+                    validAction = false;
+            }
+        } catch(Exception e) {
+            callback.error("Error executing action: " + action + " Exception:" + e);
+            return true;
         }
 
         if (validAction) {
@@ -236,8 +240,9 @@ public class BackgroundMode extends CordovaPlugin {
     {
         Activity context = cordova.getActivity();
 
-        if (isDisabled || isBind)
+        if (isDisabled || isBind) {
             return;
+        }
 
         Intent intent = new Intent(context, ForegroundService.class);
 
@@ -261,7 +266,9 @@ public class BackgroundMode extends CordovaPlugin {
         Activity context = cordova.getActivity();
         Intent intent    = new Intent(context, ForegroundService.class);
 
-        if (!isBind) return;
+        if (!isBind) {
+            return;
+        }
 
         fireEvent(Event.DEACTIVATE, null);
         context.unbindService(connection);
